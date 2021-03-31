@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>5e - GWM/SS AC Threshold Calculator</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <!-- JS preload-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="container header">
+    <div class="hero welcome">
+        <div class="hero-body">
+            <h1 class="title is-2">
+                5e - Determining AC threshold for Great Weapon Master / Sharpshooter
+            </h1>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <form>
+            <div class="field">
+                <label class="label">Hit bonus</label>
+                <div class="control">
+                    <input class="input ref" type="text" id="hit_bonus" value="7">
+                </div>
+                <p class="help">Input your overall hit modifier without the GWM/SS penalty.</p>
+            </div>
+            <div class="field">
+                <label class="label">Attack Damage</label>
+                <div class="control">
+                    <input class="input ref" type="text" id="damage" value="3d6+5">
+                </div>
+                <p class="help">Input the damage formula you would roll without the GWM/SS bonus (eg 3d6+5).</p>
+                <p class="help">If you only have the average damage (computed by <a href="https://anydice.com/">AnyDice</a> for example), you can put it as is (for our previous example, it would be 15.5).</p>
+            </div>
+            <div class="field">
+                <label class="label">Does the attack have advantage ?</label>
+                <div>
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <label class="radio">
+                                <input class="r_ref" type="radio" name="adv_type" id="adv3">
+                                Disadvantage
+                            </label>
+                            <label class="radio">
+                                <input class="r_ref" type="radio" name="adv_type" id="adv0" checked>
+                                None
+                            </label>
+                            <label class="radio">
+                                <input class="r_ref" type="radio" name="adv_type" id="adv1">
+                                Advantage
+                            </label>
+                            <label class="radio">
+                                <input class="r_ref" type="radio" name="adv_type" id="adv2">
+                                Super Advantage
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <p class="help">"Super Advantage" means advantage with a reroll of one dice, such as the Elven Accuracy Feat.</p>
+                <p class="help">Using the Lucky feat on a normal attack amounts to having advantage on that attack.</p>
+                <p class="help">Using the Lucky feat on an advantage attack amounts to having super advantage on that attack.</p>
+                <p class="help">Using the Lucky feat on a super advantage attack is probably overkill.</p>
+            </div>
+        </form>
+        <div class="res hero mt-6">
+            <h3 class="title is-3">AC Threshold : <strong><span id="res-field"></span></strong></h3>
+            <h6 class="title is-6 mb-2">What do I make of this ?</h6>
+            <p>The number above is the AC for which your attack will be doing the same damage with and without Great Weapon Master / Sharpshooter.</p>
+            <p>If the thing you're hitting has a lower AC than that, you should be using the feat to maximize damage.</p>
+            <p>The "Super advantage" calculation is slightly different and thus shows a rounded AC. This is the maximal AC you can "safely" target WITH the feat.</p>
+        </div>
+    </div>
+</main>
+<script type="text/javascript" src="parser.js"></script>
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>

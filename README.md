@@ -1,1 +1,1 @@
-GWM-SS-Calc
+# Simple AC calculator for Great Weapon Master / Sharpshooter
