@@ -43,22 +43,16 @@ function get_thresh(hit, dmg, adv) {
 }
 
 function compute() {
-    let adv = $("#adv3").is(":checked") ? 3 : $("#adv2").is(":checked") ? 2 : ($("#adv1").is(":checked") ? 1 : 0);
-    let hit = $("#hit_bonus").val();
-    let dmg = $("#damage").val();
-    $("#res-field").text(get_thresh(hit, dmg, adv));
+    let adv = document.querySelector("#adv3").checked ? 3 : document.querySelector("#adv2").checked ? 2 : (document.querySelector("#adv1").checked ? 1 : 0);
+    let hit = document.querySelector("#hit_bonus").value;
+    let dmg = document.querySelector("#damage").value;
+    document.querySelector("#res-field").innerText = get_thresh(hit, dmg, adv);
 }
 
-var tt;
-
-$(".ref").on("keyup", function(){
-    clearTimeout(tt);
-    tt = setTimeout(compute, 1000);
-});
-
-$(".r_ref").on("change", function(){
-    clearTimeout(tt);
-    compute();
+document.body.addEventListener('input', function(event) {
+    if (event.target.classList.contains('r_ref') || event.target.classList.contains('ref')) {
+        setTimeout(compute, 0);
+    }
 });
 
 compute();
